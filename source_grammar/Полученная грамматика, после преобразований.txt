@@ -1,0 +1,37 @@
+1. <program> -> { <operators_list> }
+
+2. <tail> -> ; <operator> <tail>  | EPSILON
+
+3. <operators_list> -> <operator> <tail>
+
+4. <bool_value> -> ~ $id | ~ true | ~ false | $id | true | false
+
+5. <operator> -> $id = <expression>  | { <operators_list> }
+
+6. <bool_monomial> -> <bool_value> <bool_monomial>'
+
+7. <expression> -> <bool_monomial> <bool_expression>
+
+8. <bool_expression> -> ! <bool_monomial> <bool_expression>  | EPSILON
+
+9. <bool_monomial>' -> EPSILON  | & <bool_value> <bool_monomial>'
+
+Eps: 2, 8, 9
+
+1. <program> -> { <operators_list> }
+
+2. <tail> -> ; <operator> <tail> | ; <operator>
+
+3. <operators_list> -> <operator> <tail> | <operator>
+
+4. <bool_value> -> ~ $id | ~ true | ~ false | $id | true | false
+
+5. <operator> -> $id = <expression>  | { <operators_list> }
+
+6. <bool_monomial> -> <bool_value> <bool_monomial>' | <bool_value>
+
+7. <expression> -> <bool_monomial> <bool_expression>
+
+8. <bool_expression> -> ! <bool_monomial> <bool_expression>  | ! <bool_monomial>
+
+9. <bool_monomial>' -> & <bool_value>  | & <bool_value> <bool_monomial>'

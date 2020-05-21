@@ -1,0 +1,9 @@
+{
+    $id = true
+    {
+        $id = $id ! $id
+    }
+    {
+        $id = true
+    }
+}
