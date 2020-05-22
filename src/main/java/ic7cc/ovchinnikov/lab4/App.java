@@ -3,16 +3,16 @@
  */
 package ic7cc.ovchinnikov.lab4;
 import ic7cc.ovchinnikov.lab4.model.*;
+import ic7cc.ovchinnikov.lab4.parser.OperatorPrecedenceParsing;
 
 import java.io.IOException;
 
 public class App {
 
     public static void main(String[] args) throws IOException {
-        Parser parser = new Parser("test/source_code.txt");
-        parser.parse();
-
-        parser.printParseTreePNG("result/parse_tree.png");
+        OperatorPrecedenceParsing precedenceParsing = new OperatorPrecedenceParsing("test/source_code.txt");
+        String rpn = precedenceParsing.build();
+        System.out.println(rpn);
     }
 
     public static Grammar grammarG4WithC() {

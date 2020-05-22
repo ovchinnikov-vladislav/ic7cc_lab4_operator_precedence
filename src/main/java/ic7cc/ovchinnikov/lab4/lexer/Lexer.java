@@ -80,9 +80,6 @@ public class Lexer {
             case '~':
                 token = Token.NOT;
                 break;
-            case '$':
-                token = generateIdentToken();
-                break;
             case 't':
                 token = generateTrueToken();
                 pointer++;
@@ -109,6 +106,8 @@ public class Lexer {
                 if (sourceCode.equals("null\n")) {
                     token = Token.END;
                     isEnd = true;
+                } else if (Character.isAlphabetic(sourceCode.charAt(pointer - 1)) || sourceCode.charAt(pointer-1) == '_') {
+                    token = generateIdentToken(sourceCode.charAt(pointer - 1));
                 } else
                     token = generateErrorToken();
         }
@@ -164,38 +163,38 @@ public class Lexer {
         }
     }
 
-    private Token generateIdentToken() {
-        StringBuilder ident = new StringBuilder("$");
+    private Token generateIdentToken(char start) {
+        StringBuilder ident = new StringBuilder(start + "");
         for (int i = pointer; i < sourceCode.length(); i++) {
             pointer++;
             char c = sourceCode.charAt(i);
             if (Character.isDigit(c) || Character.isAlphabetic(c))
                 ident.append(sourceCode.charAt(i));
-            else if (Character.isSpaceChar(c) || c == '=' || c == '&' || c == '!' || c == '~' || c == ';' || c == '}' || c == '{') {
+            else if (Character.isSpaceChar(c) || c == '=' || c == '&' || c == '!' || c == '~' || c == ';' || c == ')' || c == '(') {
                 pointer--;
                 break;
             }
         }
-        if (ident.length() > 1)
-            return Token.buildID(ident.toString());
+        if (ident.length() >= 1)
+            return Token.buildAtom(ident.toString());
         else
             return Token.buildError(ident.toString(), rowNumber, pointer);
     }
 
     private Token generateErrorToken() {
-        StringBuilder ident = new StringBuilder(sourceCode.charAt(pointer - 1) + "");
+        StringBuilder atom = new StringBuilder(sourceCode.charAt(pointer - 1) + "");
         for (int i = pointer; i < sourceCode.length(); i++) {
             pointer++;
             char c = sourceCode.charAt(i);
             if (Character.isDigit(c) || Character.isAlphabetic(c))
-                ident.append(sourceCode.charAt(i));
+                atom.append(sourceCode.charAt(i));
             else if (Character.isSpaceChar(c) || c == '=' || c == '&' || c == '!' || c == '~' || c == ';' || c == '}' || c == '{') {
                 pointer--;
                 break;
             }
         }
 
-        return Token.buildError(ident.toString(), rowNumber, pointer);
+        return Token.buildError(atom.toString(), rowNumber, pointer);
     }
 
     public String point() {

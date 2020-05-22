@@ -18,7 +18,7 @@ public class Token extends Terminal {
         super(name, spell);
     }
 
-    public static Token buildID(String spell) {
+    public static Token buildAtom(String spell) {
         if (!(spell.contains("!") && spell.contains("~") && spell.contains("&") && spell.contains("=") &&
             spell.contains("(") && spell.contains(")") && spell.contains("true") && spell.contains("false")))
             return new Token("IDENT", spell);

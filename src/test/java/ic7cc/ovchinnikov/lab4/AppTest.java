@@ -86,7 +86,7 @@ public class AppTest {
             token = lexer.next();
             i++;
         }
-        Assert.assertEquals(Token.RBRACE, token);
+        Assert.assertEquals(Token.ID, token);
         Assert.assertEquals(32, i);
         Assert.assertEquals(Token.END, lexer.next());
     }
