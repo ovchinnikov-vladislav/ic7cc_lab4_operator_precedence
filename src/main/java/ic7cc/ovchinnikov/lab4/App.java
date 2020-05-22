@@ -13,6 +13,7 @@ public class App {
         OperatorPrecedenceParsing precedenceParsing = new OperatorPrecedenceParsing("test/source_code.txt");
         String rpn = precedenceParsing.build();
         System.out.println(rpn);
+
     }
 
     public static Grammar grammarG4WithC() {

@@ -68,17 +68,52 @@ public class Lexer {
             case ')':
                 token = Token.RBRACKET;
                 break;
-            case '=':
-                token = Token.ASSIGN;
-                break;
             case '!':
                 token = Token.OR;
                 break;
             case '&':
                 token = Token.AND;
                 break;
+            case '=':
+                if (pointer < sourceCode.length()) {
+                    if (sourceCode.charAt(pointer) == '=') {
+                        token = Token.EQUAL;
+                        pointer++;
+                    }
+                    else
+                        token = generateErrorToken();
+                } else
+                    token = generateErrorToken();
+                break;
             case '~':
                 token = Token.NOT;
+                if (pointer < sourceCode.length()) {
+                    if (sourceCode.charAt(pointer) == '=') {
+                        token = Token.NOT_EQUAL;
+                        pointer++;
+                    }
+                } else
+                    token = generateErrorToken();
+                break;
+            case '<':
+                token = Token.LESS;
+                if (pointer < sourceCode.length()) {
+                    if (sourceCode.charAt(pointer) == '=') {
+                        token = Token.LESS_EQUAL;
+                        pointer++;
+                    }
+                } else
+                    token = generateErrorToken();
+                break;
+            case '>':
+                token = Token.MORE;
+                if (pointer < sourceCode.length()) {
+                    if (sourceCode.charAt(pointer) == '=') {
+                        token = Token.MORE_EQUAL;
+                        pointer++;
+                    }
+                } else
+                    token = generateErrorToken();
                 break;
             case 't':
                 token = generateTrueToken();
