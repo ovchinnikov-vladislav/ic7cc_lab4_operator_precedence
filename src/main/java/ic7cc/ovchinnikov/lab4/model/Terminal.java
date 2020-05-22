@@ -39,7 +39,7 @@ public class Terminal {
     @Override
     public String toString() {
         return "Terminal{" +
-                "spell='" + spell + '\'' +
+                "spell='" + spell + '\'' + ", " +
                 "name='" + name + '\'' +
                 '}';
     }

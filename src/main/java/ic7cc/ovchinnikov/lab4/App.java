@@ -12,7 +12,7 @@ public class App {
     public static void main(String[] args) throws IOException {
         OperatorPrecedenceParsing precedenceParsing = new OperatorPrecedenceParsing("test/source_code.txt");
         String rpn = precedenceParsing.build();
-        System.out.println(rpn);
+        System.out.println("RPN: " + rpn);
 
     }
 

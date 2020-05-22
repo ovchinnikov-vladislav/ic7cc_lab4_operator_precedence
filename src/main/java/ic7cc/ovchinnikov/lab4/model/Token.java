@@ -57,4 +57,12 @@ public class Token extends Terminal {
             return new Token("RELATIONSHIP", spell);
         throw new UnsupportedOperationException();
     }
+
+    @Override
+    public String toString() {
+        return "Token{" +
+                "spell='" + super.getSpell() + '\'' + ", " +
+                "name='" + super.getName() + '\'' +
+                '}';
+    }
 }
