@@ -277,10 +277,32 @@ public class OperatorPrecedenceParsing {
                         if (token.getName().equals(Token.IDENT.getName())) {
                             boolean rightBool = false;
                             boolean leftBool = false;
-                            if (i + 1 < tokens.size() && !tokens.get(i + 1).getName().equals("RELATIONSHIP")) {
+                            Token t = null;
+                            switch (tokens.get(i + 1).getName()) {
+                                case "EQUAL":
+                                case "NOT_EQUAL":
+                                case "MORE":
+                                case "MORE_EQUAL":
+                                case "LESS":
+                                case "LESS_EQUAL":
+                                    t = tokens.get(i+1);
+                                    break;
+                            }
+                            if (t != null && i + 1 < tokens.size() && !t.getName().equals("RELATIONSHIP")) {
                                 rightBool = true;
                             }
-                            if (i - 1 < tokens.size() && !tokens.get(i - 1).getName().equals("RELATIONSHIP")) {
+                            t = null;
+                            switch (tokens.get(i - 1).getName()) {
+                                case "EQUAL":
+                                case "NOT_EQUAL":
+                                case "MORE":
+                                case "MORE_EQUAL":
+                                case "LESS":
+                                case "LESS_EQUAL":
+                                    t = tokens.get(i-1);
+                                    break;
+                            }
+                            if (t != null && i - 1 < tokens.size() && !t.getName().equals("RELATIONSHIP")) {
                                 leftBool = true;
                             }
                             if (!rightBool && !leftBool) {
