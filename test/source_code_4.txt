@@ -1,18 +1,1 @@
-{
-    $id = true
-    {
-        $elem = false
-    };
-    {
-        $k = true
-        {
-            $parse = true;
-            {
-                $k = $elem
-                {
-                    $be = false
-                }
-            }
-        }
-    }
-}
+false & (true ! false) & (c ! b)
