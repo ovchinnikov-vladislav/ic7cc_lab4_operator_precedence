@@ -132,4 +132,11 @@ public class AppTest {
         Assert.assertEquals("false true & false !", str.trim());
     }
 
+    @Test
+    public void testParserSourceCode6() throws IOException {
+        OperatorPrecedenceParsing parsing = new OperatorPrecedenceParsing("test/source_code_6.txt");
+
+        String str = parsing.build();
+        Assert.assertEquals("true true & true true ! & a' c < & true ~ & true ~ & true &", str.trim());
+    }
 }

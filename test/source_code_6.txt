@@ -1,3 +1,1 @@
-{
-    & id = parse;
-}
+true < (a ! b) << c & ~ a & ~b & true
