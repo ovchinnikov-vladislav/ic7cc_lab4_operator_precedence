@@ -186,6 +186,28 @@ public class OperatorPrecedenceParsing {
                                     tokens.add(i + 2, Token.AND);
                                     token = stack.pop();
                                     i--;
+                                } else if (tokens.get(i + 1).equals(Token.NOT)) {
+                                    System.out.println("This operation cannot be applied to this type of literals.");
+                                    tokens.remove(i + 1);
+                                } else {
+                                    Token t;
+                                    do {
+                                        t = null;
+                                        switch (tokens.get(i + 1).getName()) {
+                                            case "EQUAL":
+                                            case "NOT_EQUAL":
+                                            case "MORE":
+                                            case "MORE_EQUAL":
+                                            case "LESS":
+                                            case "LESS_EQUAL":
+                                                t = Token.buildRelation(token.getSpell());
+                                                break;
+                                        }
+                                        if (t != null) {
+                                            System.out.println("Cascading relationship operations");
+                                            tokens.remove(i + 1);
+                                        }
+                                    } while (t != null);
                                 }
                             } else {
                                 System.out.println("Missing operand");
