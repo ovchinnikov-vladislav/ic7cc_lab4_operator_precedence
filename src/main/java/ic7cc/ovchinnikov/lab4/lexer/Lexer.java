@@ -23,6 +23,7 @@ public class Lexer {
             this.prevPointer = 0;
             this.columnNumber = 1;
             this.rowNumber = 0;
+            sourceCode = reader.readLine();
         } catch (IOException exc) {
             exc.printStackTrace();
         }
@@ -37,8 +38,8 @@ public class Lexer {
         }
     }
 
-    private boolean hasNextString() {
-        return sourceCode != null && pointer < sourceCode.length() - 1 && !sourceCode.isEmpty();
+    public boolean hasNextString() {
+        return sourceCode != null && pointer < sourceCode.length() && !sourceCode.isEmpty();
     }
 
     private void setNewString(String string) {

@@ -1,8 +1,0 @@
-{
-    {
-        $id = true
-    }
-    {
-        $false = false
-    }
-}

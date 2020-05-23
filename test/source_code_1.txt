@@ -1,7 +1,1 @@
-{
-    $id = false;
-    {
-        $elem = true ! false & ~ true
-    };
-    $elem = true ! false
-}
+false & true ! false
