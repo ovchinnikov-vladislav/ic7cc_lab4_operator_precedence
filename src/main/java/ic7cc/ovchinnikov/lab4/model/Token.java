@@ -7,12 +7,6 @@ public class Token extends Terminal {
     public static final Token OR = new Token("OR", "!");
     public static final Token AND = new Token("AND", "&");
     public static final Token NOT = new Token("NOT", "~");
-    public static final Token EQUAL = new Token("EQUAL", "==");
-    public static final Token NOT_EQUAL = new Token("NOT_EQUAL", "~=");
-    public static final Token LESS_EQUAL = new Token("LESS_EQUAL", "<=");
-    public static final Token MORE_EQUAL = new Token("MORE_EQUAL", ">=");
-    public static final Token LESS = new Token("LESS", "<");
-    public static final Token MORE = new Token("MORE", ">");
     public static final Token TRUE = new Token("TRUE", "true");
     public static final Token FALSE = new Token("FALSE", "false");
     public static final Token IDENT = new Token("IDENT", "");
@@ -38,9 +32,7 @@ public class Token extends Terminal {
 
     public static boolean isValidToken(Token token) {
         return token.equals(LBRACKET) || token.equals(RBRACKET) || token.equals(OR) || token.equals(AND) ||
-                token.equals(NOT) || token.equals(TRUE) || token.equals(FALSE) || token.getName().equals(IDENT.getName()) ||
-                token.equals(EQUAL) || token.equals(NOT_EQUAL) || token.equals(LESS_EQUAL) || token.equals(MORE_EQUAL) ||
-                token.equals(LESS) || token.equals(MORE);
+                token.equals(NOT) || token.equals(TRUE) || token.equals(FALSE) || token.getName().equals(IDENT.getName());
     }
 
     public static boolean isOperator(Token token) {
@@ -49,13 +41,6 @@ public class Token extends Terminal {
 
     public static boolean isLiteral(Token token) {
         return token.equals(TRUE) || token.equals(FALSE);
-    }
-
-    public static Token buildRelation(String spell) {
-        if (spell.contains("==") || spell.contains("~=") || spell.contains("<=") || spell.contains(">=") ||
-                spell.contains("<") || spell.contains(">"))
-            return new Token("RELATIONSHIP", spell);
-        throw new UnsupportedOperationException();
     }
 
     @Override

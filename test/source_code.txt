@@ -1,1 +1,1 @@
-a < (c < d) < c
+false & true ! false
